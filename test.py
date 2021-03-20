@@ -12,7 +12,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 def main():
     db_session.global_init("db/block.db")
-    db_sess = db_session.create_session()
     @app.route('/')
     @app.route('/index')
     def index():
@@ -41,6 +40,10 @@ def main():
             db_sess.commit()
             return redirect('/login')
         return render_template('register.html', title='Регистрация', form=form)
+
+    @app.route('/login')
+    def login():
+        return render_template('base.html', title='Заготовка')
     app.run()
 
 
